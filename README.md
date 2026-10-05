@@ -18,4 +18,6 @@
  
  # Group 3 Small-Satellite Repository 
 
-A repository for the system code for group 3 of WVU's Small Satellite team 
+A repository for the system code for group 3 of WVU's Small Satellite team. It's publicly viewable for anyone looking for inspiration when writing their own satellite's source code. Please note that only members of Group 3 can contribute directly to this repository.
+
+
