@@ -1,15 +1,15 @@
 ```
               .                       ·             .     |         ․                 .        _.oo.     *
   *               .          •                           -0-            _.u[[/;:,.         .odMMMMMM'         .            o
-   __________  ____  __  ______             ·             |          .o888UU[[[/;:-.  .o@P^    MMM^                .
-  / ____/ __ \/ __ \/ / / / __ \                  •                 oN88888UU[[[/;::-.        dP^       .                    
- / / __/ /_/ / / / / / / / /_/ /       o                      .    dNMMNN888UU[[[/;:--.   .o@P^                        .     
-/ /_/ / _, _/ /_/ / /_/ / ____/             .                      MMMMMMN888UU[[/;::-. o@^       .         -o-              
-\____/_/ |_|\____/\____/_/  _____                   *              NNMMMNN888UU[[[/~.o@p^                         .        
-                           |__  /                          °       888888888UU[[[/o@^-..     *         .                    0 
-   o              .          /_ <        °      .                 oI8888UU[[[/o@P^:--..                         .
-       •                   ___/ /                  .           .@^  YUU[[[/o@^;::---..     .              •                 
-                          /____/       ·                     oMP     ^/o@P^;:::---..              °                    #
+        °                                         ·       |           .o888UU[[[/;:-.  .o@P^    MMM^                .
+    _____    ______ _   __ _____ ______ __  __                       oN88888UU[[[/;::-.        dP^       .                    
+   /__  /   / ____// | / //_  _//_  __// / / /   o             .    dNMMNN888UU[[[/;:--.   .o@P^                        .     
+     / /   / /___ /  |/ /  / /   / /  / /_/ /      .                MMMMMMN888UU[[/;::-. o@^       .         -o-              
+    / /   / /___// /|  /  / /   / /  / __  /            *           NNMMMNN888UU[[[/~.o@p^                         .        
+   / /__ / /___ / / | / _/ /_  / /  / / / /                 °       888888888UU[[[/o@^-..     *         .                    0 
+  /____//_____//_/  |/ |____/ /_/  /_/ /_/     °      .            oI8888UU[[[/o@P^:--..                         .
+   o              .                                 .           .@^  YUU[[[/o@^;::---..     .              •                 
+        •                                ·                    oMP     ^/o@P^;:::---..              °                    #
       .     *           °                       #         .dMMM    .o@^ ^;::---...    .                  ·
                 •                 .                      dMMMMMMM@^`       `^^^^               .             *            
    ·                                    ․               YMMMUP^           .           °             .               .
@@ -18,7 +18,7 @@
  
  # Group 3 Small-Satellite Repository 
 
-A repository for the system code for group 3 of WVU's Small Satellite team, following the [CubeSat standards].
+A repository for the system code for group 3 of WVU's Small Satellite team **Zenith**, following the [CubeSat standards].
 
 It's publicly viewable for anyone looking for inspiration when writing their own satellite's source code. Please note that only members of Group 3 can contribute directly to this repository. For more information go to view our [wiki]. 
 
