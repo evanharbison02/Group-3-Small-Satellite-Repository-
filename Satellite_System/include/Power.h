@@ -13,6 +13,8 @@ int set_up_INA219(uint8_t SDA_Pin, uint8_t SCL_Pin);
 
 int take_measurment();
 
+float get_curr_SoC();
+
 
 
 #endif

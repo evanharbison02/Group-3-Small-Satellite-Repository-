@@ -2,6 +2,7 @@
 #define COMMANDS_H
 
 #include "include/Types.h"
+#include "include/Logger.h"
 
 /**
  * @brief Represents a parsed command with its associated arguments.

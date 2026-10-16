@@ -39,4 +39,12 @@ enum armumnet_id : uint8_t {
 
 };
 
+enum error_id : uint8_t {
+
+    ERR_UNKNOWN,
+    ERR_lOGIC,
+    ERR_INPUT
+
+};
+
 #endif

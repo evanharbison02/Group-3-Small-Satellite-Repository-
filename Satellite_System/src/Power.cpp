@@ -2,6 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*
+    The last know State of Charge for the Satellite and Current Battry Capacity 
+    May later use a log file to hold the last know SoC - Evan 
+*/ 
+// max battary cap is 10200 mAh
+globle float SoC = 100.00;
+globle float curr_Bat_Cap = 100.00;
+
+
 // initialize the reading variables are globe 
 globle float shuntvoltage = 0;
 globle float busvoltage = 0;
@@ -43,3 +52,13 @@ int take_measurment(void){
     Serial.println("");
 
 }   
+
+float get_curr_SoC(void){
+
+    // need rework 
+    float batt_cap = 5000.00 - curr_Bat_Cap;
+    SoC = SoC + 100.00 * (current_mA / batt_cap)
+
+    // Retruns the new SoC
+    return SoC;
+}
