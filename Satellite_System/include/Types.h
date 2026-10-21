@@ -39,12 +39,35 @@ enum armumnet_id : uint8_t {
 
 };
 
+// error types 
 enum error_id : uint8_t {
 
     ERR_UNKNOWN,
     ERR_lOGIC,
-    ERR_INPUT
+    ERR_INPUT,
 
+ERR_COUNT
+};
+
+// origin of error 
+enum origin_id : uint8_t {
+
+    ORIG_UNKNOWN,
+    ORIG_COMMHAND,
+    ORIG_LOGGER,
+    ORIG_POWER,
+    // more files will be added later on
+
+ORIG_COUNT
+};
+
+// the meseage that will be mapped to the repective error message id 
+enum message_id : uint8_t {
+
+    MESS_UNKNOWN,
+    MESS_PLACEHOLDER,
+
+MESS_CONT
 };
 
 #endif
