@@ -5,15 +5,35 @@
 #include <Wire.h>
 #include <Adafruit_INA219.h>
 
+//#define MAX_BAT_CAP 10200.00f
+
 // change these values based on the pins used on the ESP
-const uint8_t Pin_SDA = 21;
-const uint8_t Pin_SCL = 22; 
+extern uint8_t Pin_SDA = 21;
+extern uint8_t Pin_SCL = 22; 
 
-int set_up_INA219(uint8_t SDA_Pin, uint8_t SCL_Pin);
+// INA219 Measurement Variables 
+extern float shuntvoltage;
+extern float busvoltage;
+extern float current_mA;
+extern float loadvoltage;
+extern float power_mW;
 
-int take_measurment();
+// Initialize variables for the SoC logic 
+extern float SoC;
+extern float q_capacity;
+extern float q_max;
+extern unsigned long last_time;
 
-float get_curr_SoC();
+
+// Initialize INA219 
+extern Adafruit_INA219 ina219;
+
+
+int set_up_INA219( void );
+
+void take_measurment( int flag );
+
+float get_curr_SoC( void );
 
 
 
