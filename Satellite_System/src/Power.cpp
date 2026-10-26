@@ -31,7 +31,8 @@ int set_up_INA219( void ){
     // copied from example, will change later to better fit the needs of project 
     if (!ina219.begin()) {
         Serial.println("Failed to find INA219 chip");
-        while (1) { delay(10); }
+        //while (1) { delay(10); }
+        return 0;
     }
     Serial.println("Measuring voltage and current with IN219...");
     
@@ -50,12 +51,13 @@ void take_measurment( int flag ){
     // use a int flag to tell function to print out the readings 
     // this is usefull if interrupts are implemented, will crash if in interrupt and there is a Serial print  
     if ( flag == 1){
+        Serial.println("------------------------------------");
         Serial.print("Bus Voltage:   "); Serial.print(busvoltage); Serial.println(" V");
         Serial.print("Shunt Voltage: "); Serial.print(shuntvoltage); Serial.println(" mV");
         Serial.print("Load Voltage:  "); Serial.print(loadvoltage); Serial.println(" V");
         Serial.print("Current:       "); Serial.print(current_mA); Serial.println(" mA");
         Serial.print("Power:         "); Serial.print(power_mW); Serial.println(" mW");
-        Serial.println("");
+        Serial.println("------------------------------------\n");
     }
 
 
