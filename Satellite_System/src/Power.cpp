@@ -81,6 +81,24 @@ float get_curr_SoC( void ){
     // will allow the SoC value to returned within 1.0 and 0.0 
     if( SoC > 1.0 ) return SoC = 1.0;
     else if( SoC < 0.0) return SoC = 0.0;
-    else return Soc;
+    else return SoC;
 
+}
+
+// given to me by the robot 
+float get_curr_SoC2( void ){
+    take_measurment(0);
+
+    unsigned long now = millis();
+    float dt_ms = (float)(now - last_time);   // unsigned subtraction handles millis() rollover
+    last_time = now;
+
+    // mA * ms -> mAh : divide by 3,600,000
+    q_capacity -= (current_mA * dt_ms) / 3600000.0f;
+
+    if (q_capacity > q_max) q_capacity = q_max;
+    if (q_capacity < 0)     q_capacity = 0;
+
+    SoC = q_capacity / q_max;
+    return SoC;
 }
