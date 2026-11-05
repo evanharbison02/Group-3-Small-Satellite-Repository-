@@ -27,7 +27,7 @@ enum command_id : uint8_t {
 
 };
 
-enum armumnet_id : uint8_t {
+enum argument_id : uint8_t {
 
     ARG_UNKNOWN,
     ARG_NONE,
@@ -56,6 +56,7 @@ enum origin_id : uint8_t {
     ORIG_COMMHAND,
     ORIG_LOGGER,
     ORIG_POWER,
+    ORIG_LED,
     // more files will be added later on
 
 ORIG_COUNT

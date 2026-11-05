@@ -21,10 +21,10 @@ const char boot_logo[] = "\n"
 "        ·            °         o              .        ^^        *             .           .              °             .\n"
 "\n";
 
-error_t struct{
-    error_id err;
-    const char* message;
-};
+typedef struct {
+    origin_id file;
+    uint8_t error_index;  
+}error_t;
 
 
 

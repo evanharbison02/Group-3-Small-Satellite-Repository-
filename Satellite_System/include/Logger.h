@@ -3,11 +3,12 @@
 
 #include "include/Types.h"
 
-error_t struct{
-    error_id err;
+typedef struct {
     origin_id file;
-    message_id message; 
-};
+    uint8_t error_index;  
+}error_t;
+
+extern const char* errer_message_table[ORIG_COUNT][];
 
 extern char* error_type_array[ ERR_COUNT ];
 
@@ -15,6 +16,9 @@ extern char* error_origin_array[ ORIG_COUNT ];
 
 extern char* error_message_array[ MESS_COUNT ];
 
+extern const int NUM_ERRORS;
+
+error_t create_error(origin_id file_location, uint8_t error_index);
 
 
 #endif

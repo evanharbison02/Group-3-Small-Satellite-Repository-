@@ -27,7 +27,7 @@ enum command_id : uint8_t {
 
 };
 
-enum armumnet_id : uint8_t {
+enum argument_id : uint8_t {
 
     ARG_UNKNOWN,
     ARG_NONE,
