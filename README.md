@@ -1,20 +1,5 @@
-```
-              .                       ·             .     |         ․                 .        _.oo.     *
-  *               .          •                           -0-            _.u[[/;:,.         .odMMMMMM'         .            o
-        °                                         ·       |           .o888UU[[[/;:-.  .o@P^    MMM^                .
-    _____    ______ _   __ _____ ______ __  __                       oN88888UU[[[/;::-.        dP^       .                    
-   /__  /   / ____// | / //_  _//_  __// / / /   o             .    dNMMNN888UU[[[/;:--.   .o@P^                        .     
-     / /   / /___ /  |/ /  / /   / /  / /_/ /      .                MMMMMMN888UU[[/;::-. o@^       .         -o-              
-    / /   / /___// /|  /  / /   / /  / __  /            *           NNMMMNN888UU[[[/~.o@p^                         .        
-   / /__ / /___ / / | / _/ /_  / /  / / / /                 °       888888888UU[[[/o@^-..     *         .                    0 
-  /____//_____//_/  |/ |____/ /_/  /_/ /_/     °      .            oI8888UU[[[/o@P^:--..                         .
-   o              .                                 .           .@^  YUU[[[/o@^;::---..     .              •                 
-        •                                ·                    oMP     ^/o@P^;:::---..              °                    #
-      .     *           °                       #         .dMMM    .o@^ ^;::---...    .                  ·
-                •                 .                      dMMMMMMM@^`       `^^^^               .             *            
-   ·                                    ․               YMMMUP^           .           °             .               .
-          ·            °         o              .        ^^        *             .           .              °             .
-```
+<img width="3796" height="1080" alt="Zenith Horz Color" src="https://github.com/user-attachments/assets/4ab0dd72-7492-4c0d-a4c7-fd3bcf8a3ead" />
+
  
  # Group 3 Small-Satellite Repository 
 
