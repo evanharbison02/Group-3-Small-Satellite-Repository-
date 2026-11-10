@@ -3,4 +3,6 @@
 #include "include/Types.h"
 
 
+//int mock_set_mode(int mode)
+
 #endif

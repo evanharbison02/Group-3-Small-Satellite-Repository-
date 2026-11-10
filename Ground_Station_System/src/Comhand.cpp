@@ -32,6 +32,18 @@ argument_lookup argument_table[] = {
 const int NUM_COMMANDS  = sizeof(command_table)  / sizeof(command_table[0]);
 const int NUM_ARGUMENTS = sizeof(argument_table) / sizeof(argument_table[0]);
 
+bool read_input(char* buf, size_t buf_size) {
+    memset(buf, 0, buf_size);
+    int len = Serial.readBytesUntil('\n', buf, buf_size - 1);
+    buf[len] = '\0';
+
+    if (len > 0 && buf[len - 1] == '\r')
+        buf[--len] = '\0';
+
+    return len > 0;
+}
+
+
 // (Fall 2026 Update) might want to rename it tokenizer as this seems to dose both lexal and syntaxical analyses
 int parse_command(const char *input, command_t *cmd) {
     char buf[64];

@@ -3,6 +3,8 @@
 
 #include "include/Types.h"
 #include "include/Logger.h"
+#include "include/Attitude.h"
+#include <Arduino.h>
 
 /**
  * @brief Represents a parsed command with its associated arguments.
@@ -52,6 +54,10 @@ extern const int NUM_COMMANDS;
 
 /** @brief The number of entries in argument_table. */
 extern const int NUM_ARGUMENTS;
+/**
+ * @brief 
+ */
+bool read_input(char* buf, size_t buf_size);
 
 /**
  * @brief Parses a space-delimited command string into a command_t.
@@ -79,6 +85,8 @@ int parse_command(const char *input, command_t *cmd);
  * @param c Pointer to a command_t structure containing the command to handle.
  */
 void commhand(command_t *c );
+
+int commhand_mock(command_t *c);
 
 //extern const command_t default_cmd;
 

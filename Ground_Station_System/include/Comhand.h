@@ -54,6 +54,12 @@ extern const int NUM_COMMANDS;
 extern const int NUM_ARGUMENTS;
 
 /**
+ * @brief 
+ */
+bool read_input(char* buf, size_t buf_size)
+
+
+/**
  * @brief Parses a space-delimited command string into a command_t.
  * 
  * Tokenizes and interprets the given input string, populating the provided

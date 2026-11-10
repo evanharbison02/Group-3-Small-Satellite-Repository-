@@ -23,6 +23,7 @@ enum command_id : uint8_t {
     CMD_NONE,
     CMD_RUN,
     CMD_STOP,
+    // CMD_SET,
     CMD_HELP
 
 };
@@ -31,9 +32,9 @@ enum argument_id : uint8_t {
 
     ARG_UNKNOWN,
     ARG_NONE,
-    ARG_ACORE,
-    ARG_SCORE1,
-    ARG_SCORE2,
+    ARG_X, // pitch
+    ARG_Y, // roll
+    ARG_Z, // yaw
     ARG_CC,
     ARG_CW,
 
@@ -57,6 +58,8 @@ enum origin_id : uint8_t {
     ORIG_LOGGER,
     ORIG_POWER,
     ORIG_LED,
+    ORIG_ATTITUDE,
+    ORIG_RADIO,
     // more files will be added later on
 
 ORIG_COUNT
