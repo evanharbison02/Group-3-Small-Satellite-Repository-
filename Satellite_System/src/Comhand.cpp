@@ -33,9 +33,25 @@ argument_lookup argument_table[] = {
     {"CW", ARG_CW},
 };
 
+static bool is_axis(argument_id a) { return a >= ARG_X && a <= ARG_Z; }
+
 // Defined here after the arrays so sizeof() resolves correctly
 const int NUM_COMMANDS  = sizeof(command_table)  / sizeof(command_table[0]);
 const int NUM_ARGUMENTS = sizeof(argument_table) / sizeof(argument_table[0]);
+
+static command_id find_command(const char *tok) {
+    for (int i = 0; i < NUM_COMMANDS; i++)
+        if (strcmp(tok, command_table[i].name) == 0)
+            return command_table[i].id;
+    return CMD_UNKNOWN;
+}
+
+static argument_id find_argument(const char *tok) {
+    for (int i = 0; i < NUM_ARGUMENTS; i++)
+        if (strcmp(tok, argument_table[i].name) == 0)
+            return argument_table[i].id;
+    return ARG_UNKNOWN;
+}
 
 bool read_input(char* buf, size_t buf_size) {
     memset(buf, 0, buf_size);
@@ -53,8 +69,8 @@ int parse_command(const char *input, command_t *cmd) {
     char buf[64];
 
     cmd->cmd  = CMD_UNKNOWN;
-    cmd->arg1 = ARG_UNKNOWN;
-    cmd->arg2 = ARG_UNKNOWN;
+
+    for(int i = 0; i < MAX_ARGS; i++) cmd->args[i] = ARG_NONE;
 
     strncpy(buf, input, sizeof(buf) - 1);
     buf[sizeof(buf) - 1] = '\0';
@@ -67,56 +83,40 @@ int parse_command(const char *input, command_t *cmd) {
     char *saveptr;
     char *token = strtok_r(buf, " ", &saveptr);
 
+    // checks for blank or white space 
+    if(token == NULL) return -1;
+
     // --- Command Parsing ---
-    for (int i = 0; i < NUM_COMMANDS; i++) {
-        if (strcmp(token, command_table[i].name) == 0) {  
-            cmd->cmd = command_table[i].id;
-            Serial.println("DEBUG: command matched!");
-            break;
-        }
-    }
+    cmd->cmd = find_command(token);
     if (cmd->cmd == CMD_UNKNOWN) {
         Serial.println("DEBUG: no command match found");
         return -1;
     }
-    // subsequent calls:
-    token = strtok_r(NULL, " ", &saveptr);
-    // -- Arg1 ---
-    if (token == NULL) {
-        cmd->arg1 = ARG_NONE;
-        return 0;
-    }
-    for (int i = 0; i < NUM_ARGUMENTS; i++) {
-        if (strcmp(token, argument_table[i].name) == 0) {
-            cmd->arg1 = argument_table[i].id;
-            break;
+    // Grab the next argument while one is available
+    int x = 0;
+    while((token = strtok_r(NULL, " ", &saveptr)) != NULL) { 
+        if(x >= MAX_ARGS) {
+            Serial.println("ERROR: too many arguments");
+            return -1;
         }
-    }
-    Serial.print("DEBUG arg1 token: ["); Serial.print(token); Serial.println("]");
-    Serial.print("DEBUG arg1 id: ");     Serial.println((int)cmd->arg1);
+        argument_id id = find_argument(token);
 
-    // --- Arg2 ---
-    token = strtok_r(NULL, " ", &saveptr);
-    
-    // --- Arg2 ---
-    if (token == NULL) {          // ← guard token, not input
-        cmd->arg2 = ARG_NONE;
-        return 0;
-    }
-    for (int i = 0; i < NUM_ARGUMENTS; i++) {
-        if (strcmp(token, argument_table[i].name) == 0) {
-            cmd->arg2 = argument_table[i].id;
-            break;
+        if (id == ARG_UNKNOWN) {
+            Serial.print("ERROR: unknown argument: ");
+            Serial.println(token);
+            return -1;
         }
+
+        cmd->args[x++] = id;
+
+        Serial.print("DEBUG arg"); Serial.print(x);Serial.print("token: ["); Serial.print(token); Serial.println("]");
+        Serial.print("DEBUG arg"); Serial.print(x);Serial.print("id: "); Serial.println((int)cmd->args[x-1]);
     }
-    Serial.print("DEBUG arg2 token: ["); Serial.print(token); Serial.println("]");
-    Serial.print("DEBUG arg2 id: ");     Serial.println((int)cmd->arg2);
-
-
     return 0;
 }
 
 // (Fall 2026 Update) will need to be changed for Sprint 2, will not work  
+/*
 void commhand(command_t *c ) {
     switch(c->cmd) {
         
@@ -133,7 +133,7 @@ void commhand(command_t *c ) {
             }
             
             mag->begin().setTorque(argToDirection(c->arg2));
-            */
+            
             break;
         }
         /*
@@ -154,7 +154,7 @@ void commhand(command_t *c ) {
             }
             break;
         }
-        */
+        
         case CMD_HELP:
             Serial.println( helpTxt );
             break;
@@ -163,56 +163,41 @@ void commhand(command_t *c ) {
             break;
     }
 }
+*/
+
 
 int commhand_mock(command_t *c){
         
     switch(c->cmd) {
         
         case CMD_RUN: {
-            if (!c->arg1) { 
+            if (!is_axis(c->args[0])) { 
                 Serial.println("ERROR: invalid axis"); 
-                break; 
+                return -1; 
             }
-            // need to find a way to add simple check  for input
-            /*
-            Magnetorquer* mag = findMag((int)c->arg1);
-            if (!mag) { 
-                Serial.println("ERROR: mag not found"); 
-                break;
-            }
-            */
 
-            return run_wheel_mock((int)c->arg1, argToDirection(c->arg2));
-            break;
+            if (c->args[1] != ARG_CC && c->args[1] != ARG_CW) {
+                    Serial.println("ERROR: invalid direction");
+                    return -1;
+                }
+            return run_wheel_mock((int)c->args[0], argToDirection(c->args[1]));
         }
 
         case CMD_STOP: {
-            if (c->arg1 == ARG_NONE) {
-                return stop_all_mock();
-            } else {
-                if (!c->arg1) {
-                    Serial.println("ERROR: invalid axis");
-                    break;
-                }
-                /*
-                Magnetorquer* mag = findMag((int)c->arg1);
-                if (!mag)  {
-                    Serial.println("ERROR: mag not found");
-                    break;
-                }
-                */
-               return stop_mock((int)c->arg1);
+            if (c->args[0] == ARG_NONE) return stop_all_mock();
+            if (!is_axis(c->args[0])) {
+                Serial.println("ERROR: invalid axis");
+                return -1;
             }
-            break;
+            return stop_mock((int)c->args[0]);
         }
 
         case CMD_HELP:
             // Fall2026 UPDATE: need to actually add help text that matches with the documentations 
             //Serial.println( helpTxt );
             return 5;
-            break;
 
         default:
-            break;
+            return -1;
     }
 }

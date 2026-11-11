@@ -6,20 +6,29 @@
 #include "include/Attitude.h"
 #include <Arduino.h>
 
+#define MAX_ARGS 2
+
 /**
  * @brief Represents a parsed command with its associated arguments.
  *
  * Stores the result of a parsed input string, containing the identified
  * command and up to two optional arguments.
  */
+/*
+typedef struct {
+    command_id cmd;   // < The command identifier parsed from input. 
+    argument_id arg1; // < The first argument identifier, if present.
+    argument_id arg2; // < The second argument identifier, if present. 
+}command_t;
+*/
+
 typedef struct {
     command_id cmd;   /**< The command identifier parsed from input. */
-    argument_id arg1; /**< The first argument identifier, if present. */
-    argument_id arg2; /**< The second argument identifier, if present. */
+    argument_id args[MAX_ARGS];
 }command_t;
 
 // used to ensure that the command no larger then 3 bytes  
-static_assert(sizeof(command_t) == 3, "command_t should be 3 bytes");
+static_assert(sizeof(command_t) == 1 + MAX_ARGS, "unexpected padding in command_t");
 
 /**
  * @brief Maps a command name string to its corresponding command ID.
@@ -54,6 +63,7 @@ extern const int NUM_COMMANDS;
 
 /** @brief The number of entries in argument_table. */
 extern const int NUM_ARGUMENTS;
+
 /**
  * @brief 
  */
