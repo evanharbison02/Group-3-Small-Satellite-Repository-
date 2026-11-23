@@ -24,7 +24,7 @@ typedef struct {
 
 typedef struct {
     command_id cmd;   /**< The command identifier parsed from input. */
-    argument_id args[MAX_ARGS];
+    argument_id args[MAX_ARGS]; /** List of read command arguments */
 }command_t;
 
 // used to ensure that the command no larger then 3 bytes  

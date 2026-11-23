@@ -9,7 +9,7 @@ To-Do need to create mapping tables for each error for each file
 in other words, the Comhand files needs it own mapping table
 
 */
-
+/*
 static const char* Comhand[] = {"bullshit"};
 
 static const char* Logger[] = {};
@@ -75,4 +75,4 @@ void read_error_mess(error_t err){
     message_buff = 
 
 }
-
+*/
