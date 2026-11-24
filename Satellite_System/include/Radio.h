@@ -24,6 +24,15 @@
 #define MAX_ARGS 2 
 extern uint8_t seqNum;
 
+enum status_code : uint8_t {
+    STATUS_OK = 0,
+    STATUS_BAD_LEN,
+    STATUS_BAD_CMD,
+    STATUS_BAD_AXIS,
+    STATUS_BAD_DIR,
+    STATUS_INTERNAL
+};
+
 // the commmad packet to be sent to the SAT
 typedef struct{
     uint8_t seq;
@@ -61,5 +70,6 @@ int set_up_GST( void )
 
 int set_up_SAT( void )
 
+uint8_t execute(const cmd_packet_t& p, uint8_t& result)
 
 #endif

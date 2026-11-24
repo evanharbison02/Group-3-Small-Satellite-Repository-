@@ -3,6 +3,10 @@
 
 #include "include/Types.h"
 #include "include/Logger.h"
+#include "include/Attitude.h"
+#include <Arduino.h>
+
+#define MAX_ARGS 2
 
 /**
  * @brief Represents a parsed command with its associated arguments.
@@ -10,14 +14,21 @@
  * Stores the result of a parsed input string, containing the identified
  * command and up to two optional arguments.
  */
+/*
+typedef struct {
+    command_id cmd;   // < The command identifier parsed from input. 
+    argument_id arg1; // < The first argument identifier, if present.
+    argument_id arg2; // < The second argument identifier, if present. 
+}command_t;
+*/
+
 typedef struct {
     command_id cmd;   /**< The command identifier parsed from input. */
-    argument_id arg1; /**< The first argument identifier, if present. */
-    argument_id arg2; /**< The second argument identifier, if present. */
+    argument_id args[MAX_ARGS]; /** List of read command arguments */
 }command_t;
 
 // used to ensure that the command no larger then 3 bytes  
-static_assert(sizeof(command_t) == 3, "command_t should be 3 bytes");
+static_assert(sizeof(command_t) == 1 + MAX_ARGS, "unexpected padding in command_t");
 
 /**
  * @brief Maps a command name string to its corresponding command ID.
@@ -56,8 +67,7 @@ extern const int NUM_ARGUMENTS;
 /**
  * @brief 
  */
-bool read_input(char* buf, size_t buf_size)
-
+bool read_input(char* buf, size_t buf_size);
 
 /**
  * @brief Parses a space-delimited command string into a command_t.
@@ -85,6 +95,8 @@ int parse_command(const char *input, command_t *cmd);
  * @param c Pointer to a command_t structure containing the command to handle.
  */
 void commhand(command_t *c );
+
+int commhand_mock(command_t *c);
 
 //extern const command_t default_cmd;
 

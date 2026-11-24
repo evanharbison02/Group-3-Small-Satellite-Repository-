@@ -23,6 +23,7 @@ enum command_id : uint8_t {
     CMD_NONE,
     CMD_RUN,
     CMD_STOP,
+    // CMD_SET,
     CMD_HELP
 
 };
@@ -31,20 +32,46 @@ enum argument_id : uint8_t {
 
     ARG_UNKNOWN,
     ARG_NONE,
-    ARG_ACORE,
-    ARG_SCORE1,
-    ARG_SCORE2,
+    ARG_X, // pitch
+    ARG_Y, // roll
+    ARG_Z, // yaw
     ARG_CC,
     ARG_CW,
 
 };
 
+// error types 
 enum error_id : uint8_t {
 
     ERR_UNKNOWN,
     ERR_LOGIC,
-    ERR_INPUT
+    ERR_INPUT,
 
+ERR_COUNT
+};
+
+// origin of error 
+enum origin_id : uint8_t {
+
+    ORIG_UNKNOWN,
+    ORIG_COMMHAND,
+    ORIG_LOGGER,
+    ORIG_POWER,
+    ORIG_LED,
+    ORIG_ATTITUDE,
+    ORIG_RADIO,
+    // more files will be added later on
+
+ORIG_COUNT
+};
+
+// the meseage that will be mapped to the repective error message id 
+enum message_id : uint8_t {
+
+    MESS_UNKNOWN,
+    MESS_PLACEHOLDER,
+
+MESS_CONT
 };
 
 #endif
