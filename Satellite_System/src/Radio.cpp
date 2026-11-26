@@ -6,7 +6,11 @@ uint8_t seqNum = 0;
 uint8_t key[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 
     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 };
 
-static const char* status_text(uint8_t pack_stat) {
+
+RH_RF69 rf69(RFM69_CS, RFM69_G0);
+RHReliableDatagram rf69_manager(rf69, SAT_ADDRESS);
+
+const char* status_text(uint8_t pack_stat) {
     switch (pack_stat) {
         case STATUS_OK:       return "OK";
         case STATUS_BAD_LEN:  return "bad packet length";
@@ -68,6 +72,16 @@ int set_up_SAT( void ){
 
     Serial.print("RFM69 radio @");  Serial.print((int)RF69_FREQ);  Serial.println(" MHz");
     return 1;
+}
+
+bool build_packet(cmd_packet_t& pkt, uint8_t& seqNum, const command_t *cmd){
+    if(cmd == nullptr) return false;
+    
+    pkt.seq = seqNum++;
+    pkt.cmd = static_cast<uint8_t>(cmd->cmd);
+    for(int i = 0; i < MAX_ARGS; i++) pkt.args[i] = static_cast<uint8_t>(cmd->args[i]);
+
+    return true;
 }
 
 uint8_t execute(const cmd_packet_t& p, uint8_t& result) {

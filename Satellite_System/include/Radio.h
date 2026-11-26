@@ -60,16 +60,17 @@ typedef struct{
 // used to ensure that the command packet no larger then 4 bytes  
 static_assert(sizeof(cmd_packet_t) == 2 + MAX_ARGS, "cmd_packet_t has padding");
 
-extern RH_RF69 rf69(RFM69_CS, RFM69_G0);
+extern RH_RF69 rf69;
+extern RHReliableDatagram rf69_manager;
 
-// if file is for Ground Station or Satellite comment out the opposite line 
-extern RHReliableDatagram rf69_manager(rf69, SAT_ADDRESS);
-//extern RHReliableDatagram rf69_manager(rf69, GST_ADDRESS);
+const char* status_text(uint8_t pack_stat);
 
-int set_up_GST( void )
+int set_up_GST( void );
 
-int set_up_SAT( void )
+int set_up_SAT( void );
 
-uint8_t execute(const cmd_packet_t& p, uint8_t& result)
+bool build_packet(cmd_packet_t& pkt, uint8_t& seqNum, const command_t *cmd);
+
+uint8_t execute(const cmd_packet_t& p, uint8_t& result);
 
 #endif

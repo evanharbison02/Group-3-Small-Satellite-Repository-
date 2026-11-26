@@ -9,6 +9,6 @@
 
 //int mock_set_mode(int mode)
 
-extern Adafruit_NeoPixel NeoPixel(NUM_PIXIELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+//extern Adafruit_NeoPixel NeoPixel(NUM_PIXIELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 #endif

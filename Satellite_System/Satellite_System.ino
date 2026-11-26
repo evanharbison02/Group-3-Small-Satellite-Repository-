@@ -1,8 +1,10 @@
 #include "include/Comhand.h"
+#include "include/Radio.h"
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  if (set_up_SAT() == 0) return;
 }
 
 //this is a test to chack for the repo
@@ -35,6 +37,24 @@ void handle_commhand(int input) {
     }
 }
 
+void loop() {
+    if(rf69_manager.available()) {
+      uint8_t buf[RH_RF69_MAX_MESSAGE_LEN];
+      uint8_t len = sizeof(buf);
+      uint8_t from;
+
+      if(rf69_manager.recvfromAck(buf, &len, &from)) {
+        resp_packet_t resp = { 0, STATUS_BAD_LEN, 0 };
+        if(len == sizeof(cmd_packet_t)){
+            cmd_packet_t* cmd_pkt = (cmd_packet_t*)buf;
+            resp.seq = cmd_pkt->seq;
+            resp.status = execute(*cmd_pkt, resp.result);
+        }
+        rf69_manager.sendtoWait((uint8_t*)&resp, sizeof(resp), from);
+      }
+    }
+}
+/*
 // no radio: inpu, parse, and handling 
 void loop() {
     if(Serial.available()){
@@ -57,6 +77,7 @@ void loop() {
 
     }
 }
+*/
 /*
 // mapped out for radio communiction 
 void loop() {

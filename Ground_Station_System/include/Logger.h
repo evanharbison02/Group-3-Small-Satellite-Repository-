@@ -20,13 +20,13 @@ const char boot_logo[] = "\n"
 " ·                                    ․               YMMMUP^           .           °             .               .\n"
 "        ·            °         o              .        ^^        *             .           .              °             .\n"
 "\n";
-
+/*
 typedef struct {
     origin_id file;
     uint8_t error_index;  
 }error_t;
 
-
+*/
 
 
 
