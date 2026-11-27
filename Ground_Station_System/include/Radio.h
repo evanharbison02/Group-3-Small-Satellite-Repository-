@@ -30,6 +30,7 @@ enum status_code : uint8_t {
     STATUS_BAD_CMD,
     STATUS_BAD_AXIS,
     STATUS_BAD_DIR,
+    STATUS_BAD_MODE,
     STATUS_INTERNAL
 };
 

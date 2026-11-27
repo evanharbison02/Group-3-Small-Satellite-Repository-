@@ -19,8 +19,8 @@ static direction argToDirection(argument_id arg) {
 command_lookup command_table[] = {
     {"Run", CMD_RUN},
     {"Stop", CMD_STOP},
-    //{"Set", CMD_SET},
-    {"Help", CMD_HELP}
+    {"Help", CMD_HELP},
+    {"Set", CMD_SET}
 };
 
 // Used to compare raw command input with the avalable tokens
@@ -31,7 +31,11 @@ argument_lookup argument_table[] = {
     {"Z", ARG_Z},
     {"CC", ARG_CC},
     {"CW", ARG_CW},
+    {"Safe", ARG_SAFE},
+    {"Standby", ARG_STANDBY},
+    {"Sci", ARG_SCIENCE}
 };
+
 
 static bool is_axis(argument_id a) { return a >= ARG_X && a <= ARG_Z; }
 
@@ -196,7 +200,8 @@ int commhand_mock(command_t *c){
             // Fall2026 UPDATE: need to actually add help text that matches with the documentations 
             //Serial.println( helpTxt );
             return 5;
-
+        case CMD_SET:
+            return set_mode(c->args[0]);
         default:
             return -1;
     }

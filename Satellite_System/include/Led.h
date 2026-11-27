@@ -4,11 +4,19 @@
 #include <Adafruit_NeoPixel.h>
 #include "string.h"
 
-#define NUM_PIXIELS
-#define NEOPIXEL_PIN
+#define NEOPIXEL_PIN = 13
+extern uint8_t num_leds; 
 
-//int mock_set_mode(int mode)
+extern Adafruit_NeoPixel NeoPixel;
 
-//extern Adafruit_NeoPixel NeoPixel(NUM_PIXIELS, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+void led_setup( void );
+
+int led_Safe(int debug);
+
+int led_Standby(int debug);
+
+int led_Science(int debug);
+
+int set_mode(uint8_t mode);
 
 #endif

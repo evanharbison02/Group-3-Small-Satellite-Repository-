@@ -23,8 +23,8 @@ enum command_id : uint8_t {
     CMD_NONE,
     CMD_RUN,
     CMD_STOP,
-    // CMD_SET,
-    CMD_HELP
+    CMD_HELP,
+    CMD_SET
 
 };
 
@@ -37,6 +37,9 @@ enum argument_id : uint8_t {
     ARG_Z, // yaw
     ARG_CC,
     ARG_CW,
+    ARG_SAFE,
+    ARG_STANDBY,
+    ARG_SCIENCE
 
 };
 

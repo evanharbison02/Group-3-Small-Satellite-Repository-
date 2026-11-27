@@ -16,6 +16,7 @@ const char* status_text(uint8_t pack_stat) {
         case STATUS_BAD_CMD:  return "unknown command";
         case STATUS_BAD_AXIS: return "invalid axis";
         case STATUS_BAD_DIR:  return "invalid direction";
+        case STATUS_BAD_MODE: return "invalid mode";
         default:              return "internal error";
     }
 }    
@@ -100,6 +101,8 @@ uint8_t execute(const cmd_packet_t& p, uint8_t& result) {
             break;
         case CMD_HELP:
             break;
+        case CMD_SET:
+            if (c.args[0] < ARG_SAFE || c.args[0] > ARG_SCIENCE ) return STATUS_BAD_MODE;
         default:
             return STATUS_BAD_CMD;
     }
