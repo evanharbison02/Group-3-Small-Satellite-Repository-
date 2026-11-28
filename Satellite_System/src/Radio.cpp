@@ -104,6 +104,7 @@ uint8_t execute(const cmd_packet_t& p, uint8_t& result) {
             break;
         case CMD_SET:
             if (c.args[0] < ARG_SAFE || c.args[0] > ARG_SCIENCE ) return STATUS_BAD_MODE;
+            break;
         default:
             return STATUS_BAD_CMD;
     }

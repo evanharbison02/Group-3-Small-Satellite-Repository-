@@ -4,7 +4,7 @@
 #include <Adafruit_NeoPixel.h>
 #include "string.h"
 
-#define NEOPIXEL_PIN = 13
+extern uint8_t NeoPixel_Pin;
 extern uint8_t num_leds; 
 
 extern Adafruit_NeoPixel NeoPixel;

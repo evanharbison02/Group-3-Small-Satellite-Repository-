@@ -1,11 +1,12 @@
 #include "include/Led.h"
 
 // use this to select the number of leds that we have on the satellite 
+uint8_t NeoPixel_Pin = 13;
 uint8_t num_leds = 4;
 
-Adafruit_NeoPixel NeoPixel(num_leds, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel NeoPixel(num_leds, NeoPixel_Pin, NEO_GRB + NEO_KHZ800);
 
-void led_setup( void {
+void led_setup( void ){
     NeoPixel.begin();
     NeoPixel.show();
 }
@@ -30,21 +31,18 @@ int led_Science(int debug){
 }
 
 int set_mode(uint8_t mode){
+    int debug = 1;
     switch(mode){
-        case ARG_SAFE: {
+        case ARG_SAFE:
             // run safe led order 
-            return led_Safe();
-        }
-        case ARG_STANDBY: {
+            return led_Safe(debug);
+        case ARG_STANDBY: 
             // run standby led order 
-            return led_Standby();       
-        }
-        case ARG_SCIENCE: {
+            return led_Standby(debug);       
+        case ARG_SCIENCE: 
             // run Science led order
-            return led_Science();
-        }
-        defult:
-            return -1;
+            return led_Science(debug);
+        defult: return -1;
 
     }    
 }

@@ -4,6 +4,7 @@
 #include "include/Types.h"
 #include "include/Logger.h"
 #include "include/Attitude.h"
+#include "include/Led.h"
 #include <Arduino.h>
 
 #define MAX_ARGS 2
